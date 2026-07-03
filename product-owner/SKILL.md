@@ -134,21 +134,39 @@ observarmos:
 
 ### 5. User Story (Mike Cohn + Gherkin)
 
-**Use Case:**
+**OUTPUT OBRIGATÓRIO — toda user story gerada DEVE seguir exatamente este formato:**
+
 ```
+Prioridade: [Must Have | Should Have | Could Have | Won't Have]
+
+Descrição:
 Como [persona específica — nunca genérica "usuário"]
 Quero [ação que leva ao resultado]
 Para que [resultado desejado — não reitere a ação]
+
+Critérios de Aceite:
+Cenário: [Descrição breve do cenário 1]
+Dado que [precondição]
+E [precondição adicional, se houver]
+Quando [evento que dispara a ação — único]
+Então [resultado esperado — mensurável]
+E [resultado adicional, se houver]
+Cenário: [Descrição breve do cenário 2]
+...repita para cada cenário relevante...
+
+Definição de Pronto:
+* [Critério técnico ou de implementação 1]
+* [Critério técnico ou de implementação 2]
+* [Critério de cobertura de testes / QA]
+* [Critério de revisão / aprovação, se aplicável]
 ```
 
-**Critérios de Aceite (Gherkin):**
-```
-Cenário: [Descrição breve]
-Dado: [Precondição]
-E Dado: [Precondição adicional]
-Quando: [Evento que dispara a ação — único]
-Então: [Resultado esperado — único e mensurável]
-```
+**Regras de preenchimento:**
+
+- **Prioridade**: use MoSCoW — escolha com base no contexto do épico e impacto ao usuário
+- **Descrição**: persona específica (nunca "usuário"), ação clara, benefício real (não repete a ação)
+- **Critérios de Aceite**: mínimo 2 cenários por história (happy path + cenário negativo ou edge case). Cada cenário tem um único `Quando` e pelo menos um `Então`. Escreva os cenários em sequência contínua, sem linhas em branco entre Dado/Quando/Então.
+- **Definição de Pronto (DoD)**: mínimo 3 itens cobrindo implementação, testes e revisão. Inclua referência ao PR ou ticket quando aplicável. Mencione o responsável por QA se definido no contexto.
 
 **Verificação de qualidade (INVEST):**
 - Independent: pode ser priorizada e desenvolvida sem dependências duras?
@@ -161,7 +179,9 @@ Então: [Resultado esperado — único e mensurável]
 **Anti-padrões:**
 - "Como um usuário..." → muito genérico, use persona específica
 - "Para que eu possa logar" → repete a ação, não expressa motivação
-- Múltiplos "Quando" ou "Então" → quebre em histórias separadas
+- Múltiplos "Quando" ou "Então" em um mesmo cenário → quebre em cenários separados
+- DoD genérico ("testado", "funcionando") → seja específico sobre o que testar e quem aprova
+- Omitir a Prioridade ou a Definição de Pronto → ambos são obrigatórios em todo output
 
 ---
 
@@ -349,7 +369,7 @@ Quando o contexto requer discovery completo:
 2. Persona(s) envolvida(s)
 3. Epic Hypothesis (if/then)
 4. User Story Mapping (se fluxo complexo)
-5. User Stories com Gherkin
+5. User Stories com Gherkin — **cada uma com Prioridade MoSCoW, Critérios de Aceite e Definição de Pronto obrigatórios**
 6. Métricas de sucesso
 7. Riscos e dependências
 8. Fora do escopo
